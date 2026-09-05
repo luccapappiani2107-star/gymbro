@@ -1,0 +1,443 @@
+/* A tela do treino em andamento, o cronômetro de descanso e o histórico.
+   Tudo aqui é desenhado para uma mão só, de pé, com pressa: alvo de toque
+   grande, número grande, nada que dependa de acertar um alvo pequeno. */
+
+/* ------------------------------------------------------ treino em andamento */
+
+.cartao-andamento {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--destaque-escuro);
+  border: 1px solid var(--destaque);
+  border-radius: var(--raio);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  min-height: var(--toque);
+  text-decoration: none;
+  color: inherit;
+}
+
+.cartao-andamento:active { filter: brightness(1.2); }
+.andamento-texto { flex: 1; min-width: 0; }
+.andamento-titulo { margin: 0; font-weight: 700; color: var(--destaque); }
+.andamento-linha { margin: 2px 0 0; font-size: 0.85rem; color: var(--texto-fraco); }
+
+.andamento-acao {
+  flex: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: var(--destaque);
+  color: #10160a;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.linha-atalho {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--toque);
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: var(--raio);
+  background: var(--carta);
+  border: 1px solid var(--borda);
+  text-decoration: none;
+  color: inherit;
+}
+
+.linha-atalho:active { background: var(--carta-alta); }
+.atalho-texto { flex: 1; }
+.atalho-valor { color: var(--texto-fraco); font-weight: 600; }
+
+.botao-comecar { margin-top: 16px; font-size: 1.05rem; }
+.etiqueta-andamento { color: var(--destaque); border-color: var(--destaque); }
+
+/* ---------------------------------------------------------- topo da sessão */
+
+.cartao-sessao { border-color: var(--destaque); }
+.sessao-contagem { margin: 12px 0 8px; font-weight: 700; font-size: 1.1rem; }
+
+.progresso {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--carta-alta);
+  overflow: hidden;
+}
+
+.progresso-cheio {
+  height: 100%;
+  width: 0%;
+  background: var(--destaque);
+  border-radius: 999px;
+  transition: width 0.2s ease-out;
+}
+
+.cartao-exercicio-sessao { padding: 14px 14px 16px; }
+
+.exercicio-contagem {
+  flex: none;
+  margin-left: auto;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--carta-alta);
+  border: 1px solid var(--borda);
+  color: var(--texto-fraco);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.exercicio-contagem.completo {
+  color: var(--destaque);
+  border-color: var(--destaque);
+  background: var(--destaque-escuro);
+}
+
+/* ------------------------------------------------------------ cada série */
+
+.lista-series-sessao { list-style: none; margin: 10px 0 0; padding: 0; }
+
+.serie-sessao {
+  padding: 12px 0 14px;
+  border-top: 1px solid var(--borda);
+}
+
+.serie-sessao:first-child { border-top: none; }
+.serie-sessao.feita .serie-topo .serie-numero { color: var(--destaque); }
+
+.serie-topo {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.serie-topo .serie-numero {
+  flex: none;
+  width: 2.1rem;
+  padding-bottom: 14px;
+  font-weight: 700;
+  color: var(--texto-fraco);
+}
+
+.campo { flex: 1; min-width: 0; display: block; }
+.campo-rotulo { display: block; font-size: 0.72rem; color: var(--texto-fraco); margin-bottom: 3px; }
+
+.campo-entrada {
+  width: 100%;
+  min-height: var(--toque);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.campo-entrada:focus { border-color: var(--destaque); outline: none; }
+
+/* O botão de concluir é o maior alvo da tela: é o toque que ele dá ofegante. */
+.marcar {
+  flex: none;
+  width: 58px;
+  height: var(--toque);
+  border-radius: 14px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto-fraco);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.marcar[aria-pressed="true"] {
+  background: var(--destaque);
+  border-color: var(--destaque);
+  color: #10160a;
+}
+
+.marcar:active { filter: brightness(0.9); }
+
+.serie-linha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  padding-left: 2.6rem;
+}
+
+.serie-etiqueta {
+  flex: none;
+  width: 4.4rem;
+  font-size: 0.78rem;
+  color: var(--texto-fraco);
+}
+
+/* Linha em que o controle precisa da largura toda: o rotulo sobe. */
+.serie-linha-empilhada { flex-wrap: wrap; row-gap: 4px; }
+.serie-linha-empilhada .serie-etiqueta { width: 100%; }
+
+/* --------------------------------------------------------- RIR alvo (± ) */
+
+.passo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: var(--carta-alta);
+  overflow: hidden;
+}
+
+.passo-botao {
+  width: 46px;
+  height: 46px;
+  border: none;
+  background: transparent;
+  color: var(--texto);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.passo-botao:active { background: var(--borda); }
+
+.passo-valor {
+  min-width: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--destaque);
+}
+
+.rir-programado {
+  font-size: 0.78rem;
+  color: var(--texto-fraco);
+}
+
+.rir-programado.rir-mudado { color: var(--destaque); }
+
+/* -------------------------------------------------------- RIR real (fichas) */
+
+/* A regua inteira cabe numa linha so: sete alvos dividindo a largura. Numero
+   de RIR que quebra para a linha de baixo vira alvo pequeno, e alvo pequeno
+   nesta tela e o mesmo que alvo errado. */
+/* As fichas quebram para a linha de baixo quando não cabem: numa tela de
+   320px, sete fichas lado a lado dariam 34px cada, e errar a ficha aqui é
+   registrar o RIR errado da série. Preferimos duas linhas a um alvo estreito. */
+.fichas { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; }
+
+.ficha {
+  flex: 1 1 auto;
+  min-width: 44px;
+  height: 46px;
+  padding: 0 2px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto-fraco);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ficha-ligada {
+  background: var(--destaque);
+  border-color: var(--destaque);
+  color: #10160a;
+}
+
+/* "Nao informei" e o estado inicial de toda serie. Ele fica marcado, mas
+   discreto: se brilhasse igual a um numero, uma serie vazia pareceria cheia. */
+.ficha-branco.ficha-ligada {
+  background: var(--carta-alta);
+  border-color: var(--texto-fraco);
+  color: var(--texto-fraco);
+}
+
+.ficha:active { filter: brightness(0.9); }
+
+/* ----------------------------------------------------------------- notas */
+
+.campo-nota {
+  display: block;
+  width: 100%;
+  min-height: var(--toque);
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font: inherit;
+  resize: vertical;
+}
+
+.campo-nota::placeholder { color: var(--texto-fraco); }
+.campo-nota:focus { border-color: var(--destaque); outline: none; }
+.campo-nota-grande { min-height: 84px; }
+
+/* ------------------------------------------------------ barra de descanso */
+
+.barra-descanso {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  background: var(--carta-alta);
+  border-top: 1px solid var(--destaque);
+}
+
+.barra-descanso.aparecendo { display: flex; }
+
+.barra-descanso.acabou {
+  background: var(--destaque);
+  border-top-color: var(--destaque);
+  color: #10160a;
+}
+
+.descanso-relogio { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+.descanso-tempo {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--destaque);
+  font-variant-numeric: tabular-nums;
+}
+
+.barra-descanso.acabou .descanso-tempo { color: #10160a; }
+
+.descanso-rotulo {
+  font-size: 0.75rem;
+  color: var(--texto-fraco);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.barra-descanso.acabou .descanso-rotulo { color: #2c3a10; font-weight: 700; }
+
+.descanso-botoes { display: flex; gap: 6px; flex: none; }
+
+.descanso-botao {
+  min-width: 52px;
+  height: var(--toque);
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.barra-descanso.acabou .descanso-botao {
+  background: #10160a;
+  border-color: #10160a;
+  color: var(--destaque);
+}
+
+.descanso-botao:active { filter: brightness(0.85); }
+
+/* Com a barra na tela, o fim da página não fica escondido atrás dela. */
+body.com-descanso .pagina { padding-bottom: calc(104px + env(safe-area-inset-bottom)); }
+
+/* ------------------------------------------------------------- histórico */
+
+.cartao-aberto { border-color: var(--destaque); }
+
+.serie-registrada {
+  padding: 10px 0;
+  border-top: 1px solid var(--borda);
+}
+
+.serie-registrada:first-child { border-top: none; }
+.serie-nao-feita { opacity: 0.55; }
+
+.registrada-topo { display: flex; align-items: center; gap: 10px; }
+.registrada-topo .serie-numero { flex: none; width: 2.1rem; font-weight: 700; color: var(--texto-fraco); }
+.registrada-feito { flex: 1; font-weight: 600; }
+
+.registrada-marca {
+  flex: none;
+  width: 28px;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.marca-sim { color: var(--destaque); }
+.marca-nao { color: var(--texto-fraco); }
+
+.rir-lado-a-lado {
+  display: flex;
+  gap: 6px;
+  margin: 8px 0 0 2.6rem;
+  flex-wrap: wrap;
+}
+
+.rir-lado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 74px;
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: var(--carta-alta);
+  border: 1px solid var(--borda);
+}
+
+.rir-lado-rotulo { font-size: 0.66rem; color: var(--texto-fraco); }
+.rir-lado-numero { font-size: 1.05rem; font-weight: 700; }
+.rir-lado.rir-mudado { border-color: var(--destaque); }
+.rir-lado.rir-mudado .rir-lado-numero { color: var(--destaque); }
+.rir-real-registrado .rir-lado-numero { color: var(--destaque); }
+
+/* ------------------------------------------------- a carga sugerida (M7) */
+
+/* A marca fica colada no rótulo do campo: ela some no instante em que ele
+   digita, e o campo continua do mesmo tamanho. Cor de destaque, nunca de erro
+   — sugestão preenchida é ajuda, não aviso. */
+.campo-marca { color: var(--destaque); font-weight: 700; }
+.campo-marca[hidden] { display: none; }
+
+/* De onde veio a carga que já está nos campos. Uma frase por exercício, na
+   mesma largura da lista de séries. */
+.exercicio-sugestao {
+  margin: 10px 0 0 36px;
+  font-size: 0.8rem;
+  line-height: 1.35;
+  color: var(--texto-fraco);
+}
+
+.cartao-exercicio-sessao .exercicio-sugestao { margin: 10px 0 2px; }
+
+/* No histórico, a série em que ele preferiu outra carga. */
+.registrada-sugestao {
+  margin: 6px 0 0 2.6rem;
+  font-size: 0.76rem;
+  color: var(--texto-fraco);
+}
+
+@media (max-width: 360px) {
+  .registrada-sugestao { margin-left: 0; }
+}
+
+/* ------------------------------------------------------- telas pequenas */
+
+@media (max-width: 360px) {
+  .serie-etiqueta { width: 100%; }
+  .serie-linha { padding-left: 0; flex-wrap: wrap; row-gap: 4px; }
+  .rir-lado-a-lado { margin-left: 0; }
+}

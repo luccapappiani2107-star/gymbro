@@ -1,0 +1,138 @@
+/* Editar treino. Abre por cima da tela que está embaixo — durante a sessão, o
+   treino continua montado atrás — e ocupa a tela inteira, porque no celular
+   meia tela com teclado aberto não sobra nada. */
+
+.painel-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 40;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+body.com-painel { overflow: hidden; }
+
+.painel {
+  min-height: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--fundo);
+  border: 1px solid var(--borda);
+  padding: max(12px, env(safe-area-inset-top)) 16px calc(40px + env(safe-area-inset-bottom));
+}
+
+.painel-topo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--toque);
+  margin-bottom: 4px;
+}
+
+.painel-cabecalho { font-size: 1.3rem; margin: 0; flex: 1; }
+
+.painel-bloco {
+  background: var(--carta);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.painel-titulo { margin: 0 0 10px; font-size: 1.05rem; }
+.painel-nota { margin: 8px 0 0; color: var(--texto-fraco); font-size: 0.88rem; }
+.painel-nota-topo { margin: 0 0 16px; }
+
+.painel-aviso {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border-radius: var(--raio);
+  background: var(--destaque-escuro);
+  border: 1px solid var(--destaque);
+  font-size: 0.9rem;
+}
+
+/* ------------------------------------------------------------- os campos */
+
+.campo-empilhado + .campo-empilhado { margin-top: 16px; }
+
+/* O campo de carga é número curto e fica centralizado e grosso. Aqui é texto
+   que se lê da esquerda para a direita, e o cursor precisa ficar onde a letra
+   está. */
+.campo-empilhado .campo-entrada {
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.campo-dica { display: block; margin-top: 6px; font-size: 0.8rem; color: var(--texto-fraco); }
+
+/* ------------------------------------------------------ dia da semana */
+
+.grade-dias {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.chip-dia {
+  min-height: var(--toque);
+  padding: 8px 4px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* "Sem dia" é a última e ocupa a linha inteira: é a saída, não um dia. */
+.chip-dia:last-child { grid-column: 1 / -1; color: var(--texto-fraco); }
+
+.chip-dia.chip-ligado {
+  background: var(--destaque);
+  border-color: var(--destaque);
+  color: #10160a;
+}
+
+.chip-dia:active { filter: brightness(0.9); }
+
+/* --------------------------------------------------- ordem dos exercícios */
+
+.ordem-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ordem-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-top: 1px solid var(--borda);
+}
+
+.ordem-item:first-child { border-top: none; }
+.ordem-nome { flex: 1; min-width: 0; }
+.ordem-botoes { display: flex; gap: 8px; flex: none; }
+
+.botao-mover {
+  min-width: var(--toque);
+  min-height: var(--toque);
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.botao-mover:active { background: var(--destaque); color: #10160a; }
+.botao-mover[disabled] { opacity: 0.3; cursor: default; }
+
+.ordem-aviso { margin: 10px 0 0; min-height: 1.3em; font-size: 0.88rem; color: var(--destaque); }

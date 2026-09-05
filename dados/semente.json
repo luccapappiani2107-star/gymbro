@@ -1,0 +1,133 @@
+{
+  "_leia": "Ponto de partida do GYMBRO. Copiado da ficha inicial do CONTEXTO.md. Este arquivo entra no aparelho uma vez, na primeira abertura, e a partir daí quem manda é o dado salvo no celular: mexer aqui não muda nada que já está no aparelho.",
+  "versaoEsquema": 1,
+  "config": {
+    "unidadeCarga": "kg",
+    "casasDecimaisCarga": 1,
+    "passoDeCarga": 0.5,
+    "semanaAtual": 1,
+    "bloco": 1
+  },
+  "periodizacao": {
+    "nome": "Padrão 6 semanas",
+    "regraSeriesExtras": "repetir_ultimo",
+    "semanas": [
+      { "numero": 1, "rotulo": "Semana 1", "rirPorSerie": [3, 3, 3], "deload": false, "aplicarRegrasDeTipo": true },
+      { "numero": 2, "rotulo": "Semana 2", "rirPorSerie": [3, 2, 2], "deload": false, "aplicarRegrasDeTipo": true },
+      { "numero": 3, "rotulo": "Semana 3", "rirPorSerie": [2, 2, 1], "deload": false, "aplicarRegrasDeTipo": true },
+      { "numero": 4, "rotulo": "Semana 4", "rirPorSerie": [2, 1, 1], "deload": false, "aplicarRegrasDeTipo": true },
+      { "numero": 5, "rotulo": "Semana 5", "rirPorSerie": [1, 1, 0], "deload": false, "aplicarRegrasDeTipo": true },
+      {
+        "numero": 6,
+        "rotulo": "Semana 6 — deload",
+        "rirPorSerie": [4],
+        "deload": true,
+        "aplicarRegrasDeTipo": false,
+        "seriesFator": 0.5,
+        "seriesArredondamento": "cima",
+        "cargaFator": 0.6
+      }
+    ],
+    "regras": {
+      "composto": {
+        "descricao": "Composto nunca abaixo de 1 RIR, exceto na semana 5, onde a última série pode ir a 0.",
+        "pisoRir": 1,
+        "excecoes": [{ "semana": 5, "somenteUltimaSerie": true, "pisoRir": 0 }]
+      },
+      "isolador": {
+        "descricao": "Isolador pode ficar 1 RIR abaixo do composto na mesma semana, com piso em 0.",
+        "aplicarAutomaticamente": true,
+        "ajusteRir": -1,
+        "pisoRir": 0
+      }
+    }
+  },
+  "catalogo": [
+    { "nome": "Supino reto com barra", "grupoPrincipal": "Peito", "grupoSecundario": "Tríceps", "tipo": "composto", "unilateral": false },
+    { "nome": "Supino inclinado com halteres", "grupoPrincipal": "Peito", "grupoSecundario": "Ombro", "tipo": "composto", "unilateral": false },
+    { "nome": "Crucifixo na polia", "grupoPrincipal": "Peito", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Desenvolvimento com halteres", "grupoPrincipal": "Ombro", "grupoSecundario": "Tríceps", "tipo": "composto", "unilateral": false },
+    { "nome": "Elevação lateral", "grupoPrincipal": "Ombro", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Tríceps na corda", "grupoPrincipal": "Tríceps", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Tríceps testa com halteres", "grupoPrincipal": "Tríceps", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Puxada pronada na polia alta", "grupoPrincipal": "Dorsal", "grupoSecundario": "Bíceps", "tipo": "composto", "unilateral": false },
+    { "nome": "Remada curvada com barra", "grupoPrincipal": "Dorsal", "grupoSecundario": null, "tipo": "composto", "unilateral": false },
+    { "nome": "Remada sentada na máquina", "grupoPrincipal": "Dorsal", "grupoSecundario": null, "tipo": "composto", "unilateral": false },
+    { "nome": "Pulldown com braço estendido", "grupoPrincipal": "Dorsal", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Face pull", "grupoPrincipal": "Ombro posterior", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Rosca direta com barra W", "grupoPrincipal": "Bíceps", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Rosca martelo", "grupoPrincipal": "Bíceps", "grupoSecundario": "Antebraço", "tipo": "isolador", "unilateral": false },
+    { "nome": "Agachamento livre", "grupoPrincipal": "Quadríceps", "grupoSecundario": "Glúteo", "tipo": "composto", "unilateral": false },
+    { "nome": "Leg press", "grupoPrincipal": "Quadríceps", "grupoSecundario": null, "tipo": "composto", "unilateral": false },
+    { "nome": "Levantamento terra romeno", "grupoPrincipal": "Posterior", "grupoSecundario": "Glúteo", "tipo": "composto", "unilateral": false },
+    { "nome": "Cadeira extensora", "grupoPrincipal": "Quadríceps", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Mesa flexora", "grupoPrincipal": "Posterior", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Panturrilha em pé", "grupoPrincipal": "Panturrilha", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Abdominal na polia", "grupoPrincipal": "Abdômen", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Desenvolvimento militar", "grupoPrincipal": "Ombro", "grupoSecundario": "Tríceps", "tipo": "composto", "unilateral": false },
+    { "nome": "Supino inclinado na máquina", "grupoPrincipal": "Peito", "grupoSecundario": null, "tipo": "composto", "unilateral": false },
+    { "nome": "Puxada supinada", "grupoPrincipal": "Dorsal", "grupoSecundario": "Bíceps", "tipo": "composto", "unilateral": false },
+    { "nome": "Remada unilateral com halter", "grupoPrincipal": "Dorsal", "grupoSecundario": null, "tipo": "composto", "unilateral": true },
+    { "nome": "Elevação lateral na polia", "grupoPrincipal": "Ombro", "grupoSecundario": null, "tipo": "isolador", "unilateral": true },
+    { "nome": "Rosca inclinada", "grupoPrincipal": "Bíceps", "grupoSecundario": null, "tipo": "isolador", "unilateral": false },
+    { "nome": "Tríceps francês na polia", "grupoPrincipal": "Tríceps", "grupoSecundario": null, "tipo": "isolador", "unilateral": false }
+  ],
+  "rotinas": [
+    {
+      "nome": "Treino A",
+      "foco": "Push A, peito prioritário",
+      "diaSemana": 1,
+      "exercicios": [
+        { "catalogo": "Supino reto com barra", "series": 4, "repMin": 5, "repMax": 8, "descansoSegundos": 180 },
+        { "catalogo": "Supino inclinado com halteres", "series": 3, "repMin": 8, "repMax": 12, "descansoSegundos": 120 },
+        { "catalogo": "Crucifixo na polia", "series": 3, "repMin": 12, "repMax": 15, "descansoSegundos": 90 },
+        { "catalogo": "Desenvolvimento com halteres", "series": 3, "repMin": 8, "repMax": 12, "descansoSegundos": 120 },
+        { "catalogo": "Elevação lateral", "series": 4, "repMin": 12, "repMax": 20, "descansoSegundos": 60 },
+        { "catalogo": "Tríceps na corda", "series": 3, "repMin": 10, "repMax": 15, "descansoSegundos": 60 },
+        { "catalogo": "Tríceps testa com halteres", "series": 2, "repMin": 10, "repMax": 15, "descansoSegundos": 60 }
+      ]
+    },
+    {
+      "nome": "Treino B",
+      "foco": "Pull A, costas prioritário",
+      "diaSemana": 2,
+      "exercicios": [
+        { "catalogo": "Puxada pronada na polia alta", "series": 4, "repMin": 6, "repMax": 10, "descansoSegundos": 150 },
+        { "catalogo": "Remada curvada com barra", "series": 3, "repMin": 6, "repMax": 10, "descansoSegundos": 150 },
+        { "catalogo": "Remada sentada na máquina", "series": 3, "repMin": 10, "repMax": 12, "descansoSegundos": 90 },
+        { "catalogo": "Pulldown com braço estendido", "series": 2, "repMin": 12, "repMax": 15, "descansoSegundos": 60 },
+        { "catalogo": "Face pull", "series": 3, "repMin": 15, "repMax": 20, "descansoSegundos": 60 },
+        { "catalogo": "Rosca direta com barra W", "series": 3, "repMin": 8, "repMax": 12, "descansoSegundos": 90 },
+        { "catalogo": "Rosca martelo", "series": 2, "repMin": 10, "repMax": 15, "descansoSegundos": 60 }
+      ]
+    },
+    {
+      "nome": "Treino C",
+      "foco": "Pernas",
+      "diaSemana": 4,
+      "exercicios": [
+        { "catalogo": "Agachamento livre", "series": 4, "repMin": 5, "repMax": 8, "descansoSegundos": 180 },
+        { "catalogo": "Leg press", "series": 3, "repMin": 8, "repMax": 12, "descansoSegundos": 150 },
+        { "catalogo": "Levantamento terra romeno", "series": 3, "repMin": 8, "repMax": 10, "descansoSegundos": 150 },
+        { "catalogo": "Cadeira extensora", "series": 3, "repMin": 12, "repMax": 15, "descansoSegundos": 60 },
+        { "catalogo": "Mesa flexora", "series": 3, "repMin": 10, "repMax": 15, "descansoSegundos": 60 },
+        { "catalogo": "Panturrilha em pé", "series": 4, "repMin": 10, "repMax": 15, "descansoSegundos": 60 },
+        { "catalogo": "Abdominal na polia", "series": 3, "repMin": 12, "repMax": 15, "descansoSegundos": 60 }
+      ]
+    },
+    {
+      "nome": "Treino D",
+      "foco": "Upper B, ombro e braço",
+      "diaSemana": 5,
+      "exercicios": [
+        { "catalogo": "Desenvolvimento militar", "series": 4, "repMin": 6, "repMax": 10, "descansoSegundos": 150 },
+        { "catalogo": "Supino inclinado na máquina", "series": 3, "repMin": 8, "repMax": 12, "descansoSegundos": 120 },
+        { "catalogo": "Puxada supinada", "series": 3, "repMin": 8, "repMax": 12, "descansoSegundos": 120 },
+        { "catalogo": "Remada unilateral com halter", "series": 3, "repMin": 8, "repMax": 12, "descansoSegundos": 90 },
+        { "catalogo": "Elevação lateral na polia", "series": 3, "repMin": 12, "repMax": 20, "descansoSegundos": 60 },
+        { "catalogo": "Rosca inclinada", "series": 3, "repMin": 10, "repMax": 12, "descansoSegundos": 60 },
+        { "catalogo": "Tríceps francês na polia", "series": 3, "repMin": 10, "repMax": 15, "descansoSegundos": 60 }
+      ]
+    }
+  ]
+}

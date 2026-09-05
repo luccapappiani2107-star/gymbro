@@ -1,0 +1,341 @@
+/* GYMBRO — celular primeiro. Uma coluna só, alvo de toque grande, nada que
+   dependa de passar o mouse por cima e nenhuma tabela larga. */
+
+:root {
+  --fundo: #0d0f13;
+  --carta: #171b22;
+  --carta-alta: #1f242e;
+  --borda: #262d38;
+  --texto: #eef2f7;
+  --texto-fraco: #97a1b0;
+  --destaque: #c2f24f;
+  --destaque-escuro: #1e2a0a;
+  --perigo: #ff6b6b;
+  --toque: 52px;
+  --raio: 16px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+  overflow-wrap: anywhere;
+}
+
+.pagina {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: max(12px, env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom));
+}
+
+.carregando { color: var(--texto-fraco); padding: 24px 4px; }
+
+/* ------------------------------------------------------------------ topo */
+
+.topo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--toque);
+  margin-bottom: 12px;
+}
+
+.topo-titulo, .marca { font-size: 1.4rem; margin: 0; flex: 1; }
+.marca { letter-spacing: 0.14em; font-weight: 800; }
+.topo-inicio { justify-content: space-between; }
+
+.botao-topo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--toque);
+  min-height: var(--toque);
+  border-radius: 999px;
+  background: var(--carta);
+  border: 1px solid var(--borda);
+  color: var(--texto);
+  font-size: 1.6rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.botao-topo:active { background: var(--carta-alta); }
+
+/* --------------------------------------------------------- cartão da semana */
+
+.cartao-semana {
+  display: block;
+  background: linear-gradient(160deg, var(--carta-alta), var(--carta));
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 16px;
+  margin-bottom: 24px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cartao-semana:active { background: var(--carta-alta); }
+.semana-atalho { color: var(--destaque); }
+
+.cartao-semana.e-deload { border-color: var(--destaque); }
+
+.linha-semana { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.semana-titulo { margin: 0; font-weight: 700; font-size: 1.05rem; flex: 1; }
+.semana-rotulo { margin: 2px 0 14px; color: var(--texto-fraco); }
+.semana-legenda { margin: 0 0 8px; font-size: 0.82rem; color: var(--texto-fraco); }
+.semana-nota { margin: 12px 0 0; font-size: 0.85rem; color: var(--texto-fraco); }
+
+.chips-rir { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.chip-rir {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  padding: 8px 4px;
+  border-radius: 12px;
+  background: var(--destaque-escuro);
+  border: 1px solid var(--destaque);
+}
+
+.chip-rir-numero { font-size: 1.35rem; font-weight: 700; color: var(--destaque); }
+.chip-rir-rotulo { font-size: 0.7rem; color: var(--texto-fraco); }
+
+/* ---------------------------------------------------------------- treinos */
+
+.titulo-secao { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--texto-fraco); margin: 0 0 10px 2px; }
+
+.lista-treinos { display: flex; flex-direction: column; gap: 12px; }
+
+.cartao-treino {
+  display: block;
+  background: var(--carta);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 16px;
+  text-decoration: none;
+  color: inherit;
+  min-height: var(--toque);
+}
+
+.cartao-treino:active { background: var(--carta-alta); }
+
+.treino-cabecalho { display: flex; align-items: center; gap: 8px; }
+.treino-nome { margin: 0; font-size: 1.2rem; flex: 1; }
+.treino-seta { color: var(--texto-fraco); font-size: 1.6rem; line-height: 1; }
+.treino-foco { margin: 2px 0 12px; color: var(--texto-fraco); }
+.treino-rodape { display: flex; gap: 8px; flex-wrap: wrap; }
+.treino-semana { margin: 12px 0 0; font-weight: 600; }
+
+.etiqueta {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--carta-alta);
+  border: 1px solid var(--borda);
+  font-size: 0.8rem;
+  color: var(--texto-fraco);
+}
+
+.etiqueta-composto { color: var(--destaque); border-color: var(--destaque); }
+.etiqueta-isolador { color: var(--texto); }
+.etiqueta-deload { color: var(--destaque); border-color: var(--destaque); }
+
+/* -------------------------------------------------------------- exercícios */
+
+.resumo-treino {
+  background: var(--carta);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.lista-exercicios { display: flex; flex-direction: column; gap: 12px; }
+
+.cartao-exercicio {
+  background: var(--carta);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 14px 16px;
+}
+
+.exercicio-cabecalho { display: flex; align-items: baseline; gap: 10px; }
+
+.exercicio-ordem {
+  min-width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: var(--carta-alta);
+  color: var(--texto-fraco);
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.exercicio-nome { margin: 0; font-size: 1.1rem; }
+.exercicio-etiquetas { display: flex; gap: 6px; flex-wrap: wrap; margin: 10px 0 4px 36px; }
+.exercicio-nota { margin: 10px 0 0 36px; font-size: 0.85rem; color: var(--texto-fraco); }
+
+.lista-series { list-style: none; margin: 8px 0 0 36px; padding: 0; }
+
+.serie {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr auto;
+  column-gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--borda);
+}
+
+.serie:first-child { border-top: none; }
+.serie-fora { opacity: 0.45; }
+
+.serie-numero {
+  grid-row: 1 / span 2;
+  font-weight: 700;
+  color: var(--texto-fraco);
+}
+
+.serie-reps { grid-column: 2; grid-row: 1; }
+.serie-descanso { grid-column: 2; grid-row: 2; font-size: 0.8rem; color: var(--texto-fraco); }
+
+.serie-rir {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: var(--destaque-escuro);
+  border: 1px solid var(--destaque);
+  color: var(--destaque);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.serie-rir-fixo { border-style: dashed; }
+
+/* ------------------------------------------------------- cartões e botões */
+
+.cartao {
+  background: var(--carta);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.cartao-titulo { margin: 0 0 6px; font-size: 1.05rem; }
+.cartao-nota { margin: 0 0 14px; color: var(--texto-fraco); font-size: 0.9rem; }
+.cartao-perigo { border-color: var(--perigo); }
+
+.linha-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--borda);
+}
+
+.linha-info:first-of-type { border-top: none; }
+.info-rotulo { color: var(--texto-fraco); }
+.info-valor { font-weight: 600; text-align: right; }
+
+.botao {
+  display: block;
+  width: 100%;
+  min-height: var(--toque);
+  margin-top: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.botao-primario { background: var(--destaque); color: #10160a; border-color: var(--destaque); }
+.botao-perigo { background: var(--perigo); color: #2a0b0b; border-color: var(--perigo); }
+.botao:active { filter: brightness(0.9); }
+.escondido { display: none; }
+
+:focus-visible { outline: 3px solid var(--destaque); outline-offset: 2px; }
+
+/* --------------------------------------------------------- modal e avisos */
+
+.fundo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  z-index: 45;
+}
+
+.modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--carta);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+}
+
+.modal-titulo { margin: 0 0 10px; font-size: 1.15rem; }
+.modal-linha { margin: 0 0 10px; color: var(--texto-fraco); font-size: 0.92rem; }
+.modal-botoes { margin-top: 18px; }
+
+.aviso {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  margin: 0 auto;
+  max-width: 520px;
+  background: var(--carta-alta);
+  border: 1px solid var(--destaque);
+  border-radius: 12px;
+  padding: 14px 16px;
+  /* Acima do painel de edição (40), abaixo da confirmação (45). O aviso conta o
+     que já aconteceu; a confirmação pergunta o que vai acontecer, e um aviso
+     velho cobrindo o botão de confirmar seria o pior encontro dos dois. */
+  z-index: 42;
+}
+
+/* ----------------------------------------------------------- estado vazio */
+
+.vazio {
+  background: var(--carta);
+  border: 1px dashed var(--borda);
+  border-radius: var(--raio);
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.vazio-titulo { margin: 0 0 8px; font-size: 1.1rem; font-weight: 700; }
+.vazio-texto { margin: 0 0 18px; color: var(--texto-fraco); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

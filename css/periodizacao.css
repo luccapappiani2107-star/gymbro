@@ -1,0 +1,118 @@
+/* A tela da periodização. O bloco inteiro numa coluna só: cada semana é um
+   alvo de toque do tamanho de um dedo, e o RIR de cada série fica à vista sem
+   precisar abrir nada. */
+
+.lista-semanas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.semana-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--raio);
+  border: 1px solid var(--borda);
+  background: var(--carta);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.semana-cartao:active { background: var(--carta-alta); }
+.semana-cartao.e-deload { border-color: var(--destaque); }
+
+/* A semana de hoje é a única com barra na lateral: no meio de oito cartões
+   iguais, cor de borda sozinha não acha o lugar dele. */
+.semana-cartao.e-de-hoje {
+  border-left: 4px solid var(--destaque);
+  background: linear-gradient(160deg, var(--carta-alta), var(--carta));
+}
+
+.semana-cartao-topo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.semana-cartao-nome { font-weight: 700; font-size: 1.05rem; flex: 1; min-width: 0; }
+.semana-cartao-legenda { font-size: 0.75rem; color: var(--texto-fraco); }
+.semana-cartao-nota { font-size: 0.82rem; color: var(--texto-fraco); }
+
+.etiqueta-aqui { color: var(--destaque); border-color: var(--destaque); }
+
+/* Os chips do bloco são menores que os da tela inicial: ali são três de uma
+   semana só, aqui são até doze de oito semanas. */
+.chips-rir-bloco .chip-rir { min-width: 44px; padding: 5px 4px; }
+.chips-rir-bloco .chip-rir-numero { font-size: 1.05rem; }
+
+/* O isolador é o número derivado, não o programado: fica no traço de fora para
+   não disputar leitura com o composto. */
+.chips-rir-bloco.chip-rir-isolador .chip-rir,
+[data-teste="rir-do-isolador"] .chip-rir {
+  background: transparent;
+  border-style: dashed;
+}
+
+/* ---------------------------------------------------------- onde ele está */
+
+.onde-linha { margin: 0 0 4px; font-size: 1.15rem; font-weight: 700; }
+
+/* A semana é um número curto: chip largo de 40% deixaria dois por linha e uma
+   coluna de oito. */
+.chip-semana { flex: 0 1 auto; min-width: 56px; text-align: center; }
+
+/* ------------------------------------------------------- o RIR por série */
+
+.rir-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.rir-linha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rir-linha-rotulo { flex: 1; min-width: 0; color: var(--texto-fraco); }
+
+.rir-linha-valor {
+  min-width: 2.4rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--destaque);
+}
+
+/* O menos e o mais de cada série: menores que o contador de séries do resto do
+   app, porque são até doze pares numa tela, mas ainda no tamanho de um dedo. */
+.rir-linha .passo-botao {
+  min-width: var(--toque);
+  min-height: var(--toque);
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rir-linha .passo-botao:active { background: var(--destaque); color: #10160a; }
+
+.divisor { border: none; border-top: 1px solid var(--borda); margin: 16px 0; }
+
+/* Os campos que só existem quando uma escolha está ligada (a semana leve, o RIR
+   próprio do isolador). Vazios não ocupam espaço nenhum; cheios ganham o mesmo
+   respiro dos outros campos do painel. */
+.campos-condicionais:not(:empty) { display: block; margin-top: 16px; }

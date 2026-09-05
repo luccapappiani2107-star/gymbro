@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GYMBRO</title>
+  <meta name="description" content="Seus treinos, sua periodização por RIR, no seu celular.">
+  <meta name="theme-color" content="#0d0f13">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GYMBRO">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icones/icone-192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icones/icone-192.png">
+  <link rel="stylesheet" href="css/estilo.css">
+  <link rel="stylesheet" href="css/sessao.css">
+  <link rel="stylesheet" href="css/editor.css">
+  <link rel="stylesheet" href="css/exercicio.css">
+  <link rel="stylesheet" href="css/serie.css">
+  <link rel="stylesheet" href="css/periodizacao.css">
+  <link rel="stylesheet" href="css/desfazer.css">
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <div class="pagina">
+      <p class="carregando">Abrindo seus treinos…</p>
+    </div>
+  </main>
+
+  <noscript>
+    <p class="carregando">O GYMBRO precisa que o JavaScript esteja ligado neste navegador.</p>
+  </noscript>
+
+  <script>
+    // O app precisa ser aberto por um link (http/https). Aberto direto do
+    // arquivo, o navegador bloqueia tudo e a tela ficaria em branco sem
+    // explicação.
+    if (location.protocol === 'file:') {
+      document.getElementById('app').innerHTML =
+        '<div class="pagina"><div class="vazio">' +
+        '<p class="vazio-titulo">Abra o GYMBRO pelo link</p>' +
+        '<p class="vazio-texto">Este arquivo foi aberto direto da pasta, e assim o navegador não deixa o app funcionar. Use o endereço do GYMBRO no navegador.</p>' +
+        '</div></div>';
+    }
+  </script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

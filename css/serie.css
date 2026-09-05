@@ -1,0 +1,153 @@
+/* A série: a linha que abre para editar, os botões de acrescentar e tirar, e a
+   tela de mudar o exercício inteiro de uma vez.
+
+   Continua tudo em uma coluna só e com alvo de toque grande: o Lucca mexe nisso
+   de pé, entre séries, com a mão suada. */
+
+/* --------------------------------------- a série planejada, na tela do treino */
+
+.lista-series .serie-item { list-style: none; }
+
+/* A linha inteira é o botão. Ícone pequeno de lápis seria mais bonito e pior
+   de acertar; aqui o alvo é a linha toda. */
+.serie-toque {
+  width: 100%;
+  min-height: var(--toque);
+  margin: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.serie-item:first-child .serie-toque { border-top: none; }
+.serie-toque:active { background: var(--carta-alta); }
+
+.serie-nota {
+  margin: 0 0 8px 2.6rem;
+  font-size: 0.82rem;
+  color: var(--texto-fraco);
+}
+
+/* --------------------------------------------- + Série e Editar séries */
+
+.serie-acoes {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 10px 0 0 36px;
+}
+
+.botao-serie {
+  flex: none;
+  min-height: var(--toque);
+  padding: 8px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.botao-serie:active { background: var(--destaque); color: #10160a; }
+
+/* A nota fica na linha de baixo, inteira: espremida ao lado de dois botões
+   numa tela de 390px ela virava uma coluna de duas palavras. */
+.serie-acoes-nota {
+  flex: 1 1 100%;
+  min-width: 0;
+  font-size: 0.78rem;
+  color: var(--texto-fraco);
+}
+
+.serie-acoes-sessao { margin-left: 0; margin-top: 12px; }
+
+/* ---------------------------------------- a série no treino em andamento */
+
+/* Tirar fica na segunda linha, empurrado para a direita: longe do ✓ e dos
+   campos de carga e reps, que são os toques da mão ofegante. Longe não quer
+   dizer pequeno: o alvo continua com os 44px que um dedo pede. */
+.botao-tirar-serie {
+  margin-left: auto;
+  min-height: 44px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--borda);
+  background: transparent;
+  color: var(--texto-fraco);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.botao-tirar-serie:active { color: var(--texto); background: var(--carta-alta); }
+
+.serie-extra {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--destaque);
+}
+
+.etiqueta-extra { color: var(--destaque); border-color: var(--destaque); }
+
+/* `.escondido` é regra de uma classe só, e `.campo { display: block }` da folha
+   da sessão vem depois dela. Aqui o campo opcional volta a sumir de verdade. */
+.campo.escondido,
+.campo-empilhado.escondido { display: none; }
+
+/* ----------------------------------------------------- a edição em massa */
+
+/* O bloco que conta o que vai acontecer antes de acontecer. Ele tem borda de
+   destaque porque é o que o Lucca precisa ler antes de tocar no botão — é a
+   única ação do app que muda várias séries de uma vez. */
+.painel-bloco-previa { border-color: var(--destaque); }
+
+.previa-frase {
+  margin: 0 0 10px;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.previa-avisos {
+  margin: 0 0 14px;
+  padding-left: 18px;
+  color: var(--texto-fraco);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.previa-aviso { margin-bottom: 6px; }
+
+/* --------------------- as séries do plano, dentro do painel do exercício */
+
+/* A mesma linha da tela do treino, dentro do painel de editar exercício. Ela
+   existe para a regra 7 do CONTEXTO: durante o treino, este painel é o único
+   caminho até o plano de uma série só. */
+.painel-subtitulo {
+  margin: 18px 0 6px;
+  font-size: 0.95rem;
+  color: var(--texto-fraco);
+}
+
+.lista-do-plano {
+  display: flex;
+  flex-direction: column;
+  margin: 4px 0 14px;
+}
+
+.lista-do-plano .serie-toque { padding-left: 0; padding-right: 0; }
+
+@media (max-width: 360px) {
+  .serie-acoes { margin-left: 0; }
+  .serie-nota { margin-left: 0; }
+}

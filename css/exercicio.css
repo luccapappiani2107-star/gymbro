@@ -1,0 +1,171 @@
+/* Editar exercício e catálogo. Continua tudo em uma coluna só, com alvo de
+   toque grande: o Lucca mexe nisso de pé, entre séries. */
+
+/* ------------------------------------------------ o botão em cada exercício */
+
+.botao-editar-exercicio {
+  flex: none;
+  min-height: var(--toque);
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.botao-editar-exercicio:active { background: var(--destaque); color: #10160a; }
+
+/* O cabeçalho do exercício passa a ter um botão do lado: o nome cede espaço
+   antes do botão, nunca o contrário. */
+.exercicio-cabecalho { align-items: center; }
+.exercicio-cabecalho .exercicio-nome { flex: 1; min-width: 0; }
+
+/* ------------------------------------------------------------- os campos */
+
+.campo-entrada-numero { text-align: left; font-weight: 700; }
+
+.campo-entrada-alta {
+  min-height: 76px;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.linha-de-campos {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.linha-de-campos > * { flex: 1; min-width: 0; }
+
+.chips-escolha {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.chip-escolha {
+  flex: 1 1 40%;
+  min-height: var(--toque);
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta-alta);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.chip-escolha.chip-ligado {
+  background: var(--destaque);
+  border-color: var(--destaque);
+  color: #10160a;
+}
+
+.chip-escolha:active { filter: brightness(0.9); }
+
+/* -------------------------------------------------------- contador de séries */
+
+.contador {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.contador-valor {
+  flex: 1;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--destaque);
+}
+
+.passo-botao-grande {
+  min-width: 64px;
+  min-height: var(--toque);
+  font-size: 1.6rem;
+}
+
+/* ------------------------------------------------------------- o painel */
+
+.painel-titulo-solto {
+  margin: 0 0 14px;
+  color: var(--texto-fraco);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.painel-nota-alta { margin: 0 0 14px; }
+
+.ordem-botoes-largos { display: flex; gap: 10px; }
+.ordem-botoes-largos > * { flex: 1; }
+
+.botao-largo {
+  min-width: 0;
+  padding: 0 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------- catálogo */
+
+.busca-linha { margin-bottom: 10px; }
+
+.campo-busca {
+  width: 100%;
+  min-height: var(--toque);
+  text-align: left;
+  font-size: 1rem;
+}
+
+.catalogo-contagem {
+  margin: 0 0 10px 2px;
+  font-size: 0.82rem;
+  color: var(--texto-fraco);
+}
+
+.lista-catalogo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.item-catalogo {
+  display: block;
+  width: 100%;
+  min-height: var(--toque);
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--borda);
+  background: var(--carta);
+  color: var(--texto);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item-catalogo:active { background: var(--carta-alta); }
+
+.item-nome { display: block; font-weight: 600; }
+
+.item-etiquetas {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* Modal com lista dentro: ela rola, o resto fica parado. */
+.modal-alto { max-height: 92vh; }
+.modal-alto .lista-catalogo { max-height: 46vh; overflow-y: auto; }
+.modal-alto .campo-empilhado + .campo-empilhado { margin-top: 12px; }
+.modal-alto .campo-busca { margin-bottom: 12px; }
+
+.cartao-nota-baixa { margin: 10px 0 0; }
